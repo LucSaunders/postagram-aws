@@ -6,7 +6,11 @@ import { API } from 'aws-amplify'
 // import query definition
 import { listPosts } from './graphql/queries'
 
-export default function App() {
+// import the withAuthenticator component
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
+
+function App(){
+// export default function App() {
   const [posts, setPosts] = useState([])
   useEffect(() => {
     fetchPosts();
@@ -22,6 +26,7 @@ export default function App() {
   return (
     <div>
       <h1>Hello World</h1>
+      <AmplifySignOut/>
       {
         posts.map(post => (
           <div key={post.id}>
@@ -33,3 +38,5 @@ export default function App() {
     </div>
   )
 }
+
+export default withAuthenticator(App)
